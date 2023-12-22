@@ -1,7 +1,7 @@
 export interface CoffeeStore {
   fsq_id: string;
   name: string;
-  address: string;
+  location: { address: string };
   imageUrl: string;
 }
 
