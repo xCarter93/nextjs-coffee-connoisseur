@@ -23,7 +23,7 @@ export const getCoffeeStorePhotos = async () => {
     orientation: "squarish",
   });
   const unsplashResults = photos.response?.results.map(
-    (result) => result.urls["small"],
+    (result) => result.urls["full"],
   );
   return unsplashResults;
 };

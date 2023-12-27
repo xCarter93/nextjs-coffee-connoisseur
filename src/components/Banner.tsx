@@ -1,7 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import HeroImage from "../assets/hero-image2.png";
+import useTrackLocation from "@/hooks/use-track-location";
 
 export default function Banner() {
+  const { handleTrackLocation, latLong, locationErrorMsg } = useTrackLocation();
+
+  const handleBannerBtnClick = () => {
+    console.log("Clicking on Banner Button");
+    handleTrackLocation();
+  };
+
   return (
     <div className="flex-col gap-y-5 text-black xl:flex">
       <Image
@@ -21,7 +31,10 @@ export default function Banner() {
           Discover your local coffee shops!
         </p>
         <div>
-          <button className="btn btn-primary text-white md:btn-lg">
+          <button
+            onClick={handleBannerBtnClick}
+            className="btn btn-primary text-white md:btn-lg"
+          >
             View stores nearby
           </button>
         </div>
