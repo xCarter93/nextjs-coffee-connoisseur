@@ -1,6 +1,5 @@
 import { createApi } from "unsplash-js";
 import { env } from "@/lib/env";
-import { log } from "console";
 import { CoffeeStore } from "@/models/coffee-stores";
 
 const unsplash = createApi({
@@ -28,7 +27,9 @@ export const getCoffeeStorePhotos = async () => {
   return unsplashResults;
 };
 
-export default async function getData() {
+export default async function getData(
+  latLong: string = "42.36140321389624,-71.0563925795421",
+) {
   const photos = await getCoffeeStorePhotos();
 
   const options: Object = {
@@ -39,7 +40,7 @@ export default async function getData() {
     },
   };
   const response = await fetch(
-    getUrlForCoffeeStores("42.36140321389624,-71.0563925795421", "coffee", "6"),
+    getUrlForCoffeeStores(latLong, "coffee", "6"),
     options,
   );
   if (!response.ok) {

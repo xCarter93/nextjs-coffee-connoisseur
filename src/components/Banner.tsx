@@ -5,10 +5,10 @@ import HeroImage from "../assets/hero-image2.png";
 import useTrackLocation from "@/hooks/use-track-location";
 
 export default function Banner() {
-  const { handleTrackLocation, latLong, locationErrorMsg } = useTrackLocation();
+  const { handleTrackLocation, latLong, locationErrorMsg, isFindingLocation } =
+    useTrackLocation();
 
   const handleBannerBtnClick = () => {
-    console.log("Clicking on Banner Button");
     handleTrackLocation();
   };
 
@@ -35,8 +35,9 @@ export default function Banner() {
             onClick={handleBannerBtnClick}
             className="btn btn-primary text-white md:btn-lg"
           >
-            View stores nearby
+            {isFindingLocation ? "Locating...." : "View stores nearby"}
           </button>
+          {locationErrorMsg && <p>Something went wrong: {locationErrorMsg}</p>}
         </div>
       </div>
     </div>
