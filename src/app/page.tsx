@@ -4,7 +4,6 @@ import { CoffeeStore } from "@/models/coffee-stores";
 import getData from "@/lib/coffee-stores";
 
 export default async function Home() {
-  throw Error("Test");
   const defaultData = await getData();
 
   return (
