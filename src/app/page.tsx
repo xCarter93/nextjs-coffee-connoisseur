@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Banner from "@/components/Banner.client";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-14">
-      <h1>Coffee Connoisseur</h1>
+    <main className="m-auto flex min-h-screen max-w-7xl flex-col items-start justify-between p-14">
+      <Banner />
     </main>
   );
 }
