@@ -9,7 +9,7 @@ export default function Banner() {
   };
   return (
     <div className="flex">
-      <div className="z-20 mt-20 flex flex-col gap-10">
+      <div className="z-20 mt-10 flex flex-col gap-10 md:mt-20">
         <h1 className="my-2 flex-wrap">Coffee Connoisseur</h1>
         <p className="text-xl font-semibold text-muted-foreground">
           Discover your local coffee shops!
