@@ -1,12 +1,8 @@
-import Banner from "@/components/Banner.client";
 import CoffeeStoreCard, {
   CoffeeStoreType,
 } from "@/components/CoffeeStoreCard.server";
-import {
-  UnsplashImage,
-  UnsplashSearchResponse,
-  fetchCoffeeStores,
-} from "@/lib/coffee-stores";
+import NearbyCoffeeStores from "@/components/NearbyCoffeeStores.client";
+import { fetchCoffeeStores } from "@/lib/coffee-stores";
 
 async function getData() {
   return await fetchCoffeeStores();
@@ -18,7 +14,7 @@ export default async function Home() {
   return (
     <main className="m-auto flex min-h-screen max-w-7xl flex-col items-start justify-start p-5 md:p-14">
       <div>
-        <Banner />
+        <NearbyCoffeeStores />
       </div>
 
       <h2 className="mt-40 pb-8 text-4xl font-bold">Boston Coffee Stores</h2>
