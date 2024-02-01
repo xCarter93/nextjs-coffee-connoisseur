@@ -22,7 +22,7 @@ export default function CoffeeStoreCard({ coffeeStore }: CoffeeStoreCardProps) {
         <CardHeader className="flex items-center">
           <CardTitle>{coffeeStore.name}</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex items-center justify-center">
           <Image
             src={coffeeStore.imageUrl}
             alt="Coffee Store Image"

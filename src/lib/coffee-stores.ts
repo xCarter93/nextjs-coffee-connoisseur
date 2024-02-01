@@ -35,10 +35,13 @@ const transformCoffeeData = (
   };
 };
 
-export const fetchCoffeeStores = async () => {
+export const fetchCoffeeStores = async (
+  longLat: string = "-71.05443569314198%2C42.3665254918471",
+  limit: number = 6,
+) => {
   try {
     const response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/coffee.json?limit=6&proximity=-71.05443569314198%2C42.3665254918471&access_token=${process.env.MAPBOX_TOKEN}`,
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/coffee.json?limit=${limit}&proximity=${longLat}&access_token=${process.env.MAPBOX_TOKEN}`,
     );
     const data = await response.json();
     const photos = await getListOfCoffeeStorePhotos();

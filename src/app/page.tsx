@@ -12,10 +12,8 @@ export default async function Home() {
   const coffeeStores = await getData();
 
   return (
-    <main className="m-auto flex min-h-screen max-w-7xl flex-col items-start justify-start p-5 md:p-14">
-      <div>
-        <NearbyCoffeeStores />
-      </div>
+    <main className="mx-auto min-h-screen max-w-7xl items-start justify-start p-5 md:p-14">
+      <NearbyCoffeeStores />
 
       <h2 className="mt-40 pb-8 text-4xl font-bold">Boston Coffee Stores</h2>
       <div className="m-auto">
