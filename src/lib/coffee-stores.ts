@@ -1,12 +1,4 @@
-import { CoffeeStoreType } from "@/components/CoffeeStoreCard.server";
-
-type MapboxType = {
-  id: string;
-  properties: {
-    address: string;
-  };
-  text: string;
-};
+import { MapboxType } from "@/types";
 
 const getListOfCoffeeStorePhotos = async () => {
   try {
@@ -31,7 +23,7 @@ const transformCoffeeData = (
     address: result.properties?.address || "",
     name: result.text,
     imageUrl: photos.length > 0 ? photos[index] : "",
-    href: `/coffee-stores/${result.id}`,
+    href: `/coffee-stores/${result.id}?id=${index}`,
   };
 };
 
@@ -54,7 +46,7 @@ export const fetchCoffeeStores = async (
   }
 };
 
-export const fetchCoffeeStore = async (id: string) => {
+export const fetchCoffeeStore = async (id: string, queryId: string) => {
   try {
     const response = await fetch(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${id}.json?limit=1&proximity=ip&access_token=${process.env.MAPBOX_TOKEN}`,
@@ -63,7 +55,7 @@ export const fetchCoffeeStore = async (id: string) => {
     const photos = await getListOfCoffeeStorePhotos();
 
     const coffeeStore = data.features.map((result: MapboxType, index: number) =>
-      transformCoffeeData(index, result, photos),
+      transformCoffeeData(parseInt(queryId), result, photos),
     )[0];
     return coffeeStore;
   } catch (error) {

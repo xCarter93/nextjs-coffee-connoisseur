@@ -1,8 +1,7 @@
-import CoffeeStoreCard, {
-  CoffeeStoreType,
-} from "@/components/CoffeeStoreCard.server";
+import CoffeeStoreCard from "@/components/CoffeeStoreCard.server";
 import NearbyCoffeeStores from "@/components/NearbyCoffeeStores.client";
 import { fetchCoffeeStores } from "@/lib/coffee-stores";
+import { CoffeeStoreType } from "@/types";
 
 async function getData() {
   return await fetchCoffeeStores();

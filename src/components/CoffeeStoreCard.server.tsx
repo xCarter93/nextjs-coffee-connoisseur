@@ -2,14 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-
-export type CoffeeStoreType = {
-  id: string;
-  name: string;
-  address: string;
-  imageUrl: string;
-  href: string;
-};
+import { CoffeeStoreType } from "@/types";
 
 interface CoffeeStoreCardProps {
   coffeeStore: CoffeeStoreType;
