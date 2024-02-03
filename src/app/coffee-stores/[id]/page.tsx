@@ -1,7 +1,8 @@
 import Upvote from "@/components/Upvote.client";
 import { createCoffeeStore } from "@/lib/airtable";
 import { fetchCoffeeStore, fetchCoffeeStores } from "@/lib/coffee-stores";
-import { CoffeeStoreType } from "@/types";
+import { CoffeeStoreType, ServerParamsType } from "@/types";
+import { getDomain } from "@/utils";
 import { ArrowLeft, MapPinned, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,6 +32,21 @@ export async function generateStaticParams() {
       id: coffeeStore.id,
     }));
   }
+}
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: ServerParamsType) {
+  const coffeeStore = await fetchCoffeeStore(params.id, searchParams.id);
+  return {
+    title: coffeeStore?.name,
+    description: `${coffeeStore?.name} - Coffee Store`,
+    metadataBase: getDomain(),
+    alternates: {
+      canonical: `/coffee-stores/${params.id}`,
+    },
+  };
 }
 
 export default async function CoffeeStorePage({

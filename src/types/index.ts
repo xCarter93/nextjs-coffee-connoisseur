@@ -20,3 +20,8 @@ export type MapboxType = {
   };
   text: string;
 };
+
+export type ServerParamsType = {
+  params: { id: string };
+  searchParams: { id: string };
+};

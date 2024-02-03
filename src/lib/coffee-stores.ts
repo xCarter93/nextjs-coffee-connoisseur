@@ -38,8 +38,10 @@ export const fetchCoffeeStores = async (
     const data = await response.json();
     const photos = await getListOfCoffeeStorePhotos();
 
-    return data.features.map((result: MapboxType, index: number) =>
-      transformCoffeeData(index, result, photos),
+    return (
+      data?.features?.map((result: MapboxType, index: number) =>
+        transformCoffeeData(index, result, photos),
+      ) || []
     );
   } catch (error) {
     console.error("Error fetching coffee stores", error);
