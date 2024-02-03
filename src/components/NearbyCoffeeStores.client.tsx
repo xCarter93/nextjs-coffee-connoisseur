@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Banner from "./Banner.client";
 import useTrackLocation from "@/hooks/useTrackLocation";
-import CoffeeStoreCard, { CoffeeStoreType } from "./CoffeeStoreCard.server";
-import { fetchCoffeeStores } from "@/lib/coffee-stores";
+import CoffeeStoreCard from "./CoffeeStoreCard.server";
+import { CoffeeStoreType } from "@/types";
 
 export default function NearbyCoffeeStores() {
   const {
