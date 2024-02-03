@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    esmExternals: "loose",
+    serverMinification: false,
+  },
   images: {
     remotePatterns: [
       {
