@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { getDomain } from "@/utils";
 
 const outfit = Outfit({
   display: "swap",
@@ -12,6 +13,10 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Coffee Connoisseur",
   description: "Find great coffee shops near you!",
+  metadataBase: getDomain(),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
