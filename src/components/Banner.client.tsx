@@ -29,10 +29,11 @@ export default function Banner({
       </div>
       <div className="absolute top-0">
         <Image
-          src="/static/hero-image (2).png"
+          src="/static/hero-image (2).webp"
           alt="Coffee Shop Image"
           width={1200}
           height={1000}
+          priority={true}
         />
       </div>
     </div>
