@@ -22,6 +22,7 @@ const findRecordByFilter = async (id: string) => {
       filterByFormula: `id="${id}"`,
     })
     .firstPage();
+
   return getMinifiedRecords(findRecords);
 };
 
@@ -29,11 +30,11 @@ export const createCoffeeStore = async (
   coffeeStore: CoffeeStoreType,
   id: string,
 ) => {
-  const { name, address, voting, imageUrl } = coffeeStore;
+  const { name, address, voting = 0, imageUrl } = coffeeStore;
+
   try {
     if (id) {
       const records = await findRecordByFilter(id);
-
       if (records.length === 0) {
         const createRecords = await table.create([
           {
@@ -47,18 +48,18 @@ export const createCoffeeStore = async (
           },
         ]);
         if (createRecords.length > 0) {
-          console.log("Record created", createRecords);
+          console.log("Created a store with id", id);
           return getMinifiedRecords(createRecords);
         }
       } else {
-        console.log("Record already exists");
+        console.log("Coffee store exists");
         return records;
       }
     } else {
-      console.error("No id found");
+      console.error("Store id is missing");
     }
   } catch (error) {
-    console.error("Error creating a record", error);
+    console.error("Error creating or finding a store", error);
   }
 };
 
@@ -66,28 +67,30 @@ export const updateCoffeeStore = async (id: string) => {
   try {
     if (id) {
       const records = await findRecordByFilter(id);
-      const updatedVoting = records[0].voting + 1;
       if (records.length !== 0) {
-        const updateRecords = await table.update([
+        const record = records[0];
+        const updatedVoting = record.voting + 1;
+
+        const updatedRecords = await table.update([
           {
-            id: records[0].recordId,
+            id: record.recordId,
             fields: {
               voting: updatedVoting,
             },
           },
         ]);
-        if (updateRecords.length > 0) {
-          console.log("Record updated", updateRecords);
-          return getMinifiedRecords(updateRecords);
+
+        if (updatedRecords.length > 0) {
+          console.log("Created a store with id", id);
+          return getMinifiedRecords(updatedRecords);
         }
       } else {
-        console.log("Coffee store not found");
-        return records;
+        console.log("Coffee store does not exist");
       }
     } else {
-      console.error("No id found");
+      console.error("Store id is missing");
     }
   } catch (error) {
-    console.error("Error upvoting a record", error);
+    console.error("Error upvoting a coffee store", error);
   }
 };
