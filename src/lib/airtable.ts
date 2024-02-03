@@ -61,3 +61,33 @@ export const createCoffeeStore = async (
     console.error("Error creating a record", error);
   }
 };
+
+export const updateCoffeeStore = async (id: string) => {
+  try {
+    if (id) {
+      const records = await findRecordByFilter(id);
+      const updatedVoting = records[0].voting + 1;
+      if (records.length !== 0) {
+        const updateRecords = await table.update([
+          {
+            id: records[0].recordId,
+            fields: {
+              voting: updatedVoting,
+            },
+          },
+        ]);
+        if (updateRecords.length > 0) {
+          console.log("Record updated", updateRecords);
+          return getMinifiedRecords(updateRecords);
+        }
+      } else {
+        console.log("Coffee store not found");
+        return records;
+      }
+    } else {
+      console.error("No id found");
+    }
+  } catch (error) {
+    console.error("Error upvoting a record", error);
+  }
+};

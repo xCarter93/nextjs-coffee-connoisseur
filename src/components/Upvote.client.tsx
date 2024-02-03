@@ -1,26 +1,26 @@
 "use client";
 
-import { Star } from "lucide-react";
-import React from "react";
+import { useFormState } from "react-dom";
 import UpvoteButton from "./UpvoteButton";
+import { upvoteAction } from "@/app/actions";
+import { Star } from "lucide-react";
 
-interface UpvoteProps {
-  voting: number;
-}
-
-export default function Upvote({ voting }: UpvoteProps) {
-  const handleOnCLick = () => {
-    console.log("Upvote!");
+export default function Upvote({ voting, id }: { voting: number; id: string }) {
+  const initialState = {
+    id,
+    voting,
   };
 
+  const [state, formAction] = useFormState(upvoteAction, initialState);
   return (
     <>
       <div className="flex">
         <Star size={32} />
-        <p className="pl-2">{voting}</p>
+        <p className="pl-2">{state?.voting}</p>
       </div>
-
-      <UpvoteButton onClick={handleOnCLick}>Up vote!</UpvoteButton>
+      <form action={formAction} className="flex flex-col justify-between">
+        <UpvoteButton>Up vote!</UpvoteButton>
+      </form>
     </>
   );
 }

@@ -2,7 +2,7 @@ import Upvote from "@/components/Upvote.client";
 import { createCoffeeStore } from "@/lib/airtable";
 import { fetchCoffeeStore, fetchCoffeeStores } from "@/lib/coffee-stores";
 import { CoffeeStoreType } from "@/types";
-import { ArrowLeft, MapPinned } from "lucide-react";
+import { ArrowLeft, MapPinned, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,7 +37,7 @@ export default async function CoffeeStorePage({
   params: { id },
   searchParams: { id: queryId },
 }: CoffeeStorePageProps) {
-  const coffeeStore = await getData(id, queryId);
+  const coffeeStore: CoffeeStoreType = await getData(id, queryId);
   return (
     <div className="h-full pb-80">
       <div className="m-auto grid max-w-full px-12 py-12 lg:max-w-6xl lg:grid-cols-2 lg:gap-4">
@@ -74,7 +74,7 @@ export default async function CoffeeStorePage({
             )}
           </div>
 
-          <Upvote voting={coffeeStore.voting} />
+          <Upvote id={id} voting={coffeeStore.voting} />
         </div>
       </div>
     </div>
