@@ -18,9 +18,7 @@ const config = {
       },
     },
     extend: {
-      backgroundImage: {
-        gradient: "url('/static/background.webp')",
-      },
+
       colors: {
         purple: {
           951: "rgba(79, 70, 229, 1)",

@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={outfit.className}>{children}</body>
+      <body className={`${outfit.className} bg-gradient-to-br from-cyan-100 via-cyan-400 to-indigo-300`}>{children}</body>
     </html>
   );
 }
